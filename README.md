@@ -6,6 +6,8 @@ I used the script to download all the token data (thumbnail images, ipfs URL to 
 
 At the current state, it doesn't download the original artworks (ex. mp4 video or hi-res images) because I haven't found a need yet, but the code can be customized.
 
+![thumbnail](./thumbs.jpg)
+
 ## How to use
 
 1. `npm i`
