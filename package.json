@@ -1,0 +1,25 @@
+{
+  "name": "token-utils",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "watch": "tsup --watch",
+    "build": "tsc --noemit && tsup ./src/index.ts"
+  },
+  "keywords": [],
+  "author": "Daeinc",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "prettier": "^3.3.2",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.95.0",
+    "commander": "^12.1.0",
+    "node-fetch": "^3.3.2"
+  }
+}
