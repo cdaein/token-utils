@@ -2,7 +2,7 @@
 
 Node.js scripts to get blockchain NFT token data and thumbnail images from an artist wallet. Currently, it supports fxhash and objkt platforms using their GraphQL APIs.
 
-I used the script to download all the token data (thumbnail images, ipfs URL to link to a generative artwork, etc.) for [my website](https://paperdove.com/knowledge/). My work is either generative or video, so the script hasn't been tested for other types of work.
+I used the script to download all the token data (thumbnail images, ipfs URL to link to a generative artwork, etc.) and self-host on [my website](https://paperdove.com/knowledge/). My work is either generative or video, so the script hasn't been tested for other types of work.
 
 At the current state, it doesn't download the original artworks (ex. mp4 video or hi-res images) because I haven't found a need yet, but the code can be customized.
 
@@ -10,9 +10,11 @@ At the current state, it doesn't download the original artworks (ex. mp4 video o
 
 ## How to use
 
-1. `npm i`
-1. `npm run build`
-1. `./dist/index.js --help`
+1. Clone this repo: `git clone https://github.com/cdaein/token-utils.git`
+1. Go into the folder: `cd token-utils`
+1. Install the dependencies: `npm i`
+1. Build the script: `npm run build`
+1. Run the script: `node ./dist/index.js --help`
 
 ## Objkt
 
