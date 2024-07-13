@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Knowledge - 26066 (author is null as it's a collaboration)
 // Duet - 18461
 // Time Intertwined - 13526

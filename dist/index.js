@@ -1,10 +1,10 @@
-#!/usr/bin/env node
 import * as fs from 'node:fs';
 import fs__default from 'node:fs';
 import fetch2 from 'node-fetch';
 import path from 'node:path';
 import { Command } from 'commander';
 
+// src/fxhash.ts
 async function downloadThumbnails(token, outDir, range) {
   if (!fs.existsSync(outDir)) {
     try {
