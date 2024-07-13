@@ -51,16 +51,16 @@ program
   .option("--data", "Download JSON data")
   .option("--images", "Download thumbnail images")
   .action(async (options: FxhashOptions) => {
+    const info = getHelpInfo(program, "fxhash");
     if (!options.id) {
       console.error("Error: Missing required option --id");
       // display help info
-      const info = getHelpInfo(program, "fxhash");
       console.log(info);
       process.exit(1); // Exit with a non-zero status code
     }
     if (!options.data || !options.images) {
-      console.error("Error: Missing required option --id");
-      program.help(); // Display help message
+      console.error("Error: Missing required option --data and/or --images");
+      console.log(info);
       process.exit(1); // Exit with a non-zero status code
     }
 
@@ -96,15 +96,14 @@ program
   .option("--data", "Download JSON data")
   .option("--images", "Download thumbnail images")
   .action(async (options: ObjktOptions) => {
+    const info = getHelpInfo(program, "objkt");
     if (!options.contract) {
       console.error("Error: Missing required option --contract");
-      const info = getHelpInfo(program, "objkt");
       console.log(info);
       process.exit(1); // Exit with a non-zero status code
     }
     if (!options.creatorAddress) {
       console.error("error: Missing required option --creator-address");
-      const info = getHelpInfo(program, "objkt");
       console.log(info);
       process.exit(1);
     }
