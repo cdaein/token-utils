@@ -12,9 +12,10 @@ At the current state, it doesn't download the original artworks (ex. mp4 video o
 
 1. Clone this repo: `git clone https://github.com/cdaein/token-utils.git`
 1. Go into the folder: `cd token-utils`
-1. Install the dependencies: `npm i`
-1. Build the script: `npm run build`
-1. Run the script: `node ./dist/index.js --help`
+1. Install as a global package: `npm i -g .`
+1. Now, you can run it anywhere with the command `token-utils`.
+1. For example, `token-utils fxhash --help` will show you options for fxhash.
+1. See below for detailed guide.
 
 ## Objkt
 
@@ -23,10 +24,10 @@ Add `-ca "tz1.."` for a creator wallet address and add the contract name like `-
 Examples:
 
 ```sh
-node ./dist/index.js objkt --creator-address "tz1ABCD..." --contract "Versum Items" --data --images
+token-utils objkt --creator-address "tz1ABCD..." --contract "Versum Items" --data --images
 
 # I've noticed the thumbnails are missing from my hic et nunc contract so just download JSON.
-node ./dist/index.js objkt -ca "tz1ABCD..." -c "hic et nunc" --data
+token-utils objkt -ca "tz1ABCD..." -c "hic et nunc" --data
 ```
 
 ## fxhash
@@ -39,11 +40,16 @@ Examples:
 
 ```sh
 # download JSON data only
-node ./dist/index.js fxhash --id 26066 --data
+token-utils fxhash --id 26066 --data
 
 # download token data and images from 69 to 70 (inclusive)
-node ./dist/index.js fxhash --id 26066 --data --images -s 69 -e 70
+token-utils fxhash --id 26066 --data --images -s 69 -e 70
 ```
+
+## How to uninstall
+
+1. First, see if it's installed as a global package: `npm ls -g`.
+1. After checking, run `npm uninstall -g token-utils`.
 
 ## To dos
 
