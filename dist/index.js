@@ -184,15 +184,15 @@ function getHelpInfo(program2, platform) {
   return program2.commands.find((cmd) => cmd.name() === platform).helpInformation();
 }
 program.command("fxhash").description("Get fxhash token data using fxhash API").option("-i --id <id>", "Project ID").option("-s --start <num>", "Start iteration (from 1) for fxhash").option("-e --end <num>", "End iteration (inclusive) for fxhash").option("--data", "Download JSON data").option("--images", "Download thumbnail images").action(async (options) => {
+  const info = getHelpInfo(program, "fxhash");
   if (!options.id) {
     console.error("Error: Missing required option --id");
-    const info = getHelpInfo(program, "fxhash");
     console.log(info);
     process.exit(1);
   }
   if (!options.data || !options.images) {
-    console.error("Error: Missing required option --id");
-    program.help();
+    console.error("Error: Missing required option --data and/or --images");
+    console.log(info);
     process.exit(1);
   }
   const token = await getTokenDataById(parseInt(options.id));
@@ -213,15 +213,14 @@ program.command("fxhash").description("Get fxhash token data using fxhash API").
 program.command("objkt").description(
   "Get token data using Objkt API. You can also query token data from other platforms such as Versum and fxhash by providing the contract name"
 ).option("-c --contract <name>", "FA Contract Name").option("-ca --creator-address <address>", "Tezos creator address").option("--data", "Download JSON data").option("--images", "Download thumbnail images").action(async (options) => {
+  const info = getHelpInfo(program, "objkt");
   if (!options.contract) {
     console.error("Error: Missing required option --contract");
-    const info = getHelpInfo(program, "objkt");
     console.log(info);
     process.exit(1);
   }
   if (!options.creatorAddress) {
     console.error("error: Missing required option --creator-address");
-    const info = getHelpInfo(program, "objkt");
     console.log(info);
     process.exit(1);
   }
