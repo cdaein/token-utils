@@ -18,15 +18,15 @@ At the current state, it doesn't download the original artworks (ex. mp4 video o
 
 ## Objkt
 
-Use `-p objkt` for the platform, add `-ca "tz1.."` for a creator wallet address and add the contract name like `-c "Versum Items"`. Objkt can fetch data from all tezos platform.
+Add `-ca "tz1.."` for a creator wallet address and add the contract name like `-c "Versum Items"`. Objkt can fetch data from all tezos platform.
 
 Examples:
 
 ```sh
-node ./dist/index.js --platform objkt --creator-address "tz1ABCD..." --contract "Versum Items" --data --images
+node ./dist/index.js objkt --creator-address "tz1ABCD..." --contract "Versum Items" --data --images
 
 # I've noticed the thumbnails are missing from my hic et nunc contract so just download JSON.
-node ./dist/index.js -p objkt -ca "tz1ABCD..." -c "hic et nunc" --data
+node ./dist/index.js objkt -ca "tz1ABCD..." -c "hic et nunc" --data
 ```
 
 ## fxhash
@@ -39,10 +39,10 @@ Examples:
 
 ```sh
 # download JSON data only
-node ./dist/index.js -p fxhash --id 26066 --data
+node ./dist/index.js fxhash --id 26066 --data
 
 # download token data and images from 69 to 70 (inclusive)
-node ./dist/index.js -p fxhash --id 26066 --data --images -s 69 -e 70
+node ./dist/index.js fxhash --id 26066 --data --images -s 69 -e 70
 ```
 
 ## To dos
