@@ -12,7 +12,8 @@ At the current state, it doesn't download the original artworks (ex. mp4 video o
 
 1. Clone this repo: `git clone https://github.com/cdaein/token-utils.git`
 1. Go into the folder: `cd token-utils`
-1. Install as a global package: `npm i -g .`
+1. Install dependencies: `npm i`
+1. Install as a global package (dont' forget the `.`): `npm i -g .`
 1. Now, you can run it anywhere with the command `token-utils`.
 1. For example, `token-utils fxhash --help` will show you options for fxhash.
 1. See below for detailed guide.
