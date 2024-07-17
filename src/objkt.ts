@@ -4,35 +4,7 @@ import * as fs from "node:fs";
 import path from "node:path";
 import fetch from "node-fetch";
 import kleur from "kleur";
-
-interface Token {
-  name: string;
-  token_id: string;
-  thumbnail_uri: string;
-  /** actual token (ie. mp4) */
-  artifact_uri: string;
-  /** hi-res image (sometimes video itself?!) */
-  display_uri: string;
-  fa: {
-    name: string;
-    contract: string;
-    path: string;
-  };
-  description: string;
-  tags: {
-    tag: {
-      name: string;
-    };
-  };
-  extra: {
-    uri: string;
-    file_name: string;
-    mime_type: "video/mp4" | "image/jpeg";
-    dimensions: {
-      value: "480x480" | "720x720" | "960x960"; // there are more..
-    };
-  }[];
-}
+import type { Token } from "./types";
 
 const { yellow } = kleur;
 

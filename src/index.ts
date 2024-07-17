@@ -14,22 +14,7 @@ import {
   downloadThumbnails as downloadObjktImages,
 } from "./objkt";
 import { downloadJson } from "./utils";
-
-interface FxhashOptions {
-  /** fxhash project id */
-  id: string;
-  start: number;
-  end: number;
-  data: boolean;
-  images: boolean;
-}
-
-interface ObjktOptions {
-  contract: string;
-  creatorAddress: string;
-  data: boolean;
-  images: boolean;
-}
+import type { FxhashOptions, ObjktOptions } from "./types";
 
 // take input from user
 const program = new Command();

@@ -4,52 +4,7 @@ import * as fs from "node:fs";
 import fetch from "node-fetch";
 import path from "node:path";
 import kleur from "kleur";
-
-interface CollectionMetadata {
-  name: string;
-  description: string;
-  tags: string[];
-  artifactUri: string;
-  displayUri: string;
-  generativeUri: string;
-}
-interface IterationMetadata {
-  /** project title + #iteration number */
-  name: string;
-  description: string;
-  iterationHash: string;
-  generatorUri: string;
-  /** includes fxhash url parameter unique to each iteration. (fxparams if applicable as well) */
-  artifactUri: string;
-  /** full res image */
-  displayUri: string;
-  /** iteration thumbnail */
-  thumbnailUri: string;
-  attributes: Record<string, any>[];
-}
-interface Iteration {
-  metadata: IterationMetadata;
-  /** project title + #iteration number */
-  name: string;
-  /** iteration number only */
-  iteration: number;
-  /** iteration thumbnail */
-  thumbnailUri: string;
-}
-export interface GenToken {
-  /** project title */
-  name: string;
-  createdAt: string;
-  author: {
-    name: string;
-  };
-  generativeUri: string;
-  metadata: CollectionMetadata;
-  tags: string[];
-  thumbnailUri: string;
-  /** array of iteration data */
-  entireCollection: Iteration[];
-}
+import type { GenToken } from "./types";
 
 const { yellow } = kleur;
 
