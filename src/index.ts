@@ -56,25 +56,29 @@ program
       process.exit(1); // Exit with a non-zero status code
     }
 
-    // request data from fxhash API
-    const token = await getTokenDataById(parseInt(options.id));
+    try {
+      // request data from fxhash API
+      const token = await getTokenDataById(parseInt(options.id));
 
-    // construct output directory structure
-    const tokenName = token.name.toLowerCase().replace(/\s/g, "-");
-    const outDir = path.join("./output", tokenName);
+      // construct output directory structure
+      const tokenName = token.name.toLowerCase().replace(/\s/g, "-");
+      const outDir = path.join("./output", tokenName);
 
-    // download data as JSON file
-    if (options.data) downloadJson(token, outDir);
-    // download images
-    if (options.images) {
-      const from = options.start;
-      const to = options.end;
-      let range: number[] = [];
-      if (from && to) {
-        range.push(from);
-        range.push(to);
+      // download data as JSON file
+      if (options.data) downloadJson(token, outDir);
+      // download images
+      if (options.images) {
+        const from = options.start;
+        const to = options.end;
+        let range: number[] = [];
+        if (from && to) {
+          range.push(from);
+          range.push(to);
+        }
+        await downloadThumbnails(token, outDir, range);
       }
-      downloadThumbnails(token, outDir, range);
+    } catch (e) {
+      console.error(e);
     }
   });
 
@@ -88,24 +92,28 @@ program
   .option("--data", "Download JSON data")
   .option("--images", "Download thumbnail images")
   .action(async (options: ObjktOptions) => {
-    const tokens = await getTokenDataByAddress(
-      // "tz1WXTdGdwD6g24vJp7vpjWVR8LuFpisUcoc",
-      options.creatorAddress,
-    );
+    try {
+      const tokens = await getTokenDataByAddress(
+        // "tz1WXTdGdwD6g24vJp7vpjWVR8LuFpisUcoc",
+        options.creatorAddress,
+      );
 
-    // filter tokens with contract name
-    const filteredTokens = tokens.filter(
-      (token) => token.fa.name === options.contract,
-    );
+      // filter tokens with contract name
+      const filteredTokens = tokens.filter(
+        (token) => token.fa.name === options.contract,
+      );
 
-    // construct output directory structure
-    const contractName = options.contract.toLowerCase().replace(/\s/g, "-");
-    const outDir = path.join("./output", contractName);
+      // construct output directory structure
+      const contractName = options.contract.toLowerCase().replace(/\s/g, "-");
+      const outDir = path.join("./output", contractName);
 
-    // download data as JSON file
-    if (options.data) downloadJson(filteredTokens, outDir);
-    // download images
-    if (options.images) downloadObjktImages(filteredTokens, outDir);
+      // download data as JSON file
+      if (options.data) downloadJson(filteredTokens, outDir);
+      // download images
+      if (options.images) await downloadObjktImages(filteredTokens, outDir);
+    } catch (e) {
+      console.error(e);
+    }
   });
 
 program.parse(process.argv);
