@@ -50,7 +50,7 @@ program
   .option("--images", "Download thumbnail images")
   .action(async (options: FxhashOptions) => {
     const info = getHelpInfo(program, "fxhash");
-    if (!options.data || !options.images) {
+    if (!options.data && !options.images) {
       console.error("Error: Missing required option --data and/or --images");
       console.log(info);
       process.exit(1); // Exit with a non-zero status code
