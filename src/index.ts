@@ -43,19 +43,13 @@ function getHelpInfo(program: Command, platform: string) {
 program
   .command("fxhash")
   .description("Get fxhash token data using fxhash API")
-  .option("-i --id <id>", "Project ID")
+  .requiredOption("-i --id <id>", "Project ID")
   .option("-s --start <num>", "Start iteration (from 1) for fxhash")
   .option("-e --end <num>", "End iteration (inclusive) for fxhash")
   .option("--data", "Download JSON data")
   .option("--images", "Download thumbnail images")
   .action(async (options: FxhashOptions) => {
     const info = getHelpInfo(program, "fxhash");
-    if (!options.id) {
-      console.error("Error: Missing required option --id");
-      // display help info
-      console.log(info);
-      process.exit(1); // Exit with a non-zero status code
-    }
     if (!options.data || !options.images) {
       console.error("Error: Missing required option --data and/or --images");
       console.log(info);
