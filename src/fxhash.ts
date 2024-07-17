@@ -3,6 +3,7 @@
 import * as fs from "node:fs";
 import fetch from "node-fetch";
 import path from "node:path";
+import kleur from "kleur";
 
 interface CollectionMetadata {
   name: string;
@@ -50,6 +51,8 @@ export interface GenToken {
   entireCollection: Iteration[];
 }
 
+const { yellow } = kleur;
+
 /**
  * @param token -
  * @param outDir -
@@ -87,16 +90,27 @@ export async function downloadThumbnails(
 
   // for (const iteration of iterationsToDownload) {
   for (let i = from - 1; i < to; i++) {
-    const iteration = iterationsToDownload[i];
-    const response = await fetch(iteration.imageUri);
-    const buffer = Buffer.from(await response.arrayBuffer());
+    try {
+      const iteration = iterationsToDownload[i];
+      const filename = `${iteration.number.toString().padStart(4, "0")}-${iteration.hash}.png`;
+      const filePath = path.join(outDir, filename);
 
-    const filename = `${iteration.number.toString().padStart(4, "0")}-${iteration.hash}.png`;
-    const filePath = path.join(outDir, filename);
+      // if file exists, skip
+      if (fs.existsSync(filePath)) {
+        console.log(`File already exists. Skipping ${yellow(filePath)}`);
+        continue;
+      }
 
-    fs.writeFileSync(filePath, buffer);
+      console.log(`Fetching image from ${iteration.imageUri}`);
+      const response = await fetch(iteration.imageUri);
+      const buffer = Buffer.from(await response.arrayBuffer());
 
-    console.log(`Writing file... ${filePath}`);
+      console.log(`Writing file... ${filePath}`);
+      fs.writeFileSync(filePath, buffer);
+    } catch (e) {
+      // log error and continue with next token
+      console.error(`Error while downloading`, e);
+    }
   }
 }
 
