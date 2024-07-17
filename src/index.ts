@@ -5,7 +5,7 @@
 
 // REVIEW: does path slash work on other OSes?
 
-import { type GenToken, getTokenDataById, downloadThumbnails } from "./fxhash";
+import { getTokenDataById, downloadThumbnails } from "./fxhash";
 import path from "node:path";
 import { Command } from "commander";
 // import { solana } from "./codecanvas";
