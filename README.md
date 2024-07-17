@@ -20,7 +20,7 @@ At the current state, it doesn't download the original artworks (ex. mp4 video o
 
 ## Objkt
 
-Add `-ca "tz1.."` for a creator wallet address and add the contract name like `-c "Versum Items"`. Objkt can fetch data from all tezos platform.
+Add `-ca "tz1.."` for a creator wallet address and add the contract name like `-c "Versum Items"`. Objkt can fetch data from all tezos platform. If the connection hangs, try again later. The script will skip already-download images to save time.
 
 Examples:
 
@@ -34,8 +34,6 @@ token-utils objkt -ca "tz1ABCD..." -c "hic et nunc" --data
 ## fxhash
 
 Get the ID (ex. `--id 26066`) from each project URL from the fxhash website. Optionally, pass `-s` and `-e` to set the range to download the images from. It starts at `1`. This is useful if you lose the network connection and need to continue download images. No need to provide the creator address.
-
-Objkt API provides access to all Tezos tokens, so it can handle fxhash data as well. But for now, fxhash data comes from the fxhash API.
 
 Examples:
 
