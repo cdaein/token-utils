@@ -89,23 +89,11 @@ program
   .description(
     "Get token data using Objkt API. You can also query token data from other platforms such as Versum and fxhash by providing the contract name",
   )
-  .option("-c --contract <name>", "FA Contract Name")
-  .option("-ca --creator-address <address>", "Tezos creator address")
+  .requiredOption("-c --contract <name>", "FA Contract Name")
+  .requiredOption("-ca --creator-address <address>", "Tezos creator address")
   .option("--data", "Download JSON data")
   .option("--images", "Download thumbnail images")
   .action(async (options: ObjktOptions) => {
-    const info = getHelpInfo(program, "objkt");
-    if (!options.contract) {
-      console.error("Error: Missing required option --contract");
-      console.log(info);
-      process.exit(1); // Exit with a non-zero status code
-    }
-    if (!options.creatorAddress) {
-      console.error("error: Missing required option --creator-address");
-      console.log(info);
-      process.exit(1);
-    }
-
     const tokens = await getTokenDataByAddress(
       // "tz1WXTdGdwD6g24vJp7vpjWVR8LuFpisUcoc",
       options.creatorAddress,
